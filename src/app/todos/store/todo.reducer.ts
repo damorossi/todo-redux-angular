@@ -25,6 +25,14 @@ const _todoReducer = createReducer(
             }
         })
     }),
+    on(todoActions.toggleAll, (state, { completados }) => {
+       return state.map(todo => {
+            return {
+                ...todo,
+                completado: completados
+            }
+       })
+    }),
     on(todoActions.editarTodo, (state, { id, newText }) => {
         return state.map(todo => {
             if(todo.id === id) {
