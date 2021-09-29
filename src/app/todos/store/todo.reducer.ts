@@ -12,7 +12,34 @@ export const initialState: Todo[] =  [
 
 const _todoReducer = createReducer(
     initialState,
-    on(todoActions.createTodo, (state, { task }) => [...state, new Todo(task)])
+    on(todoActions.createTodo, (state, { task }) => [...state, new Todo(task)]),
+    on(todoActions.toggleTodo, (state, { id }) => {
+        return state.map(todo => {
+            if(todo.id === id) {
+                return {
+                    ...todo,
+                    completado: !todo.completado
+                }
+            } else {
+                return todo;
+            }
+        })
+    }),
+    on(todoActions.editarTodo, (state, { id, newText }) => {
+        return state.map(todo => {
+            if(todo.id === id) {
+                return {
+                    ...todo,
+                    texto: newText
+                }
+            } else {
+                return todo;
+            }
+        })
+    }),
+    on(todoActions.borrarTodo, (state, { id }) => {
+        return  state.filter(todo => todo.id !== id);
+    })
 );
 
 export function todoReducer(state: Todo[] = initialState, action: Action) {
