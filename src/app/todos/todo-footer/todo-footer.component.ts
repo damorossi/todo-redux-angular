@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/app.state';
+import * as filtrosActions from '../../filtro/filtro.actions';
+import { setFilter } from '../../filtro/filtro.actions';
 
 @Component({
   selector: 'app-todo-footer',
@@ -6,10 +10,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./todo-footer.component.scss']
 })
 export class TodoFooterComponent implements OnInit {
+  currentFilter: filtrosActions.filtrosValidos;
+  filterTypes: filtrosActions.filtrosValidos[] = 
+    [
+      filtrosActions.filtrosValidos.TODOS,
+      filtrosActions.filtrosValidos.PENDIENTES,
+      filtrosActions.filtrosValidos.COMPLETADOS
+    ];
 
-  constructor() { }
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
+    this.store.select('filtro').subscribe( filter => {
+      this.currentFilter = filter;
+    })
+  }
+
+  switchFilter(filter: filtrosActions.filtrosValidos): void {
+    this.store.dispatch(setFilter({filter}));
   }
 
 }

@@ -3,7 +3,11 @@
     <span class="todo-count"><strong>0</strong> item left</span>
     <!-- Remove this if you don't implement routing -->
     <ul class="filters">
-        <li>
+        <li *ngFor="let action of filterTypes">
+            <a href="#/" (click)="switchFilter(action)" [class.selected]="action === currentFilter">{{ action | titlecase }}</a>
+        </li>
+        <!-- 
+            <li *ngFor="let action of filterTypes">
             <a class="selected" href="#/">All</a>
         </li>
         <li>
@@ -11,7 +15,7 @@
         </li>
         <li>
             <a href="#/completed">Completed</a>
-        </li>
+        </li> -->
     </ul>
     <!-- Hidden if no completed items are left ↓ -->
     <button class="clear-completed">Clear completed</button>
