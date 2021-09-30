@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.state';
 import * as filtrosActions from '../../filtro/filtro.actions';
 import { setFilter } from '../../filtro/filtro.actions';
+import { clearCompleted } from '../store/todo.actions';
 
 @Component({
   selector: 'app-todo-footer',
@@ -33,4 +34,8 @@ export class TodoFooterComponent implements OnInit {
     this.store.dispatch(setFilter({filter}));
   }
 
+
+  clearCompleted() {
+    this.store.dispatch(clearCompleted());
+  }
 }

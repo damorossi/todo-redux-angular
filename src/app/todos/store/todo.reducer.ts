@@ -4,10 +4,10 @@ import * as todoActions from './todo.actions';
 
 
 export const initialState: Todo[] =  [
-    new Todo('...'),
-    new Todo('...'),
-    new Todo('...'),
-    new Todo('...'),
+    new Todo('Get a todo list from web'),
+    new Todo('Spllit the template in different components'),
+    new Todo('Configure Ngrx'),
+    new Todo('Implement Acions on Todo list'),
 ];
 
 const _todoReducer = createReducer(
@@ -47,6 +47,9 @@ const _todoReducer = createReducer(
     }),
     on(todoActions.borrarTodo, (state, { id }) => {
         return  state.filter(todo => todo.id !== id);
+    }),
+    on(todoActions.clearCompleted, state => {
+        return  state.filter(todo => !todo.completado);
     })
 );
 

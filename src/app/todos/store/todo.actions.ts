@@ -5,7 +5,6 @@ export const createTodo = createAction(
     props<{task: string}>()
     );
 
-
     export const toggleTodo = createAction(
         '[TODO] Toggle Todo',
         props<{id: number}>()
@@ -25,3 +24,5 @@ export const createTodo = createAction(
         '[TODO] Borrar Todo',
         props<{id: number}>()
     );
+
+    export const clearCompleted = createAction( '[TODO] Clear Completed Todo')

@@ -1,4 +1,4 @@
 <ul class="todo-list">
-    <app-todo-item *ngFor="let item of todos" [todo]="item">
+    <app-todo-item *ngFor="let item of todos | todoFilter:currentFilter" [todo]="item">
     </app-todo-item>
 </ul>
