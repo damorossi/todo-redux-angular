@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TodoModule } from './todos/todo.module';
 import { FooterComponent } from './footer/footer.component';
@@ -19,7 +18,6 @@ import { appReducers } from './app.state';
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    AppRoutingModule,
     TodoModule,
     StoreModule.forRoot( appReducers ),
     StoreDevtoolsModule.instrument({
